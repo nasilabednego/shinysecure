@@ -68,7 +68,7 @@ encrypt<-function(credentials, input, output,UI,session){
   output$login<-shiny::renderUI({isolate({ shiny::absolutePanel(draggable = T,
                                                   shiny::wellPanel(
                                                     shiny::div(style=paste0('font-size:',input$inpuT,'%'),
-                                                        shiny::fluidPage(dashboadthemes::theme_onenote,
+                                                        shiny::fluidPage(dashboardthemes::theme_onenote,
                                                                   
                                                                                    shiny::fluidPage(
                                                                                       'From NCDS&AS'
@@ -81,9 +81,9 @@ encrypt<-function(credentials, input, output,UI,session){
                                                                  shiny::actionBttn('setng','settings',icon = icon('cog'),style = 'str',color = 'p'),
                                                                   shiny::textInput('username',placeholder='enter username',''),
 
-                                                                  passwordInput('password',placeholder='enter password',''),
+                                                                  shiny::passwordInput('password',placeholder='enter password',''),
 
-                                                                  actionBttn("loginok",'login',style = 'fi',color = 's'))
+                                                                  shiny::actionBttn("loginok",'login',style = 'fi',color = 's'))
                                                     )))
   })
 
