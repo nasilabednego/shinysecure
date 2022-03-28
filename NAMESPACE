@@ -1,4 +1,4 @@
 exportPattern("^[[:alpha:]]+")
-import(shiny)
 import(dplyr)
+import(shiny)
 inport(shinyjs)
