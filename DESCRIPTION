@@ -8,4 +8,4 @@ Description: This package enables authors to encrypt shiny app.
 License: MIT Licence
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, shiny, shinyjs
+Imports: bslib, dashboardthemes, dplyr, shiny, shinyjs
