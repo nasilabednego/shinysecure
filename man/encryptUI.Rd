@@ -15,6 +15,7 @@ ui<-encryptUI()
 server<-function(input,output,session){
 encrypt(credentials = credentials,input = input,session = session, output = output,
           UI= fluidPage('Hello!')
+        )
 }
 shinyApp(ui,server)
 }
