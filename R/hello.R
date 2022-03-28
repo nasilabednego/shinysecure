@@ -78,12 +78,12 @@ encrypt<-function(credentials, input, output,UI,session){
                                                                                     
 
                                                                   ),
-                                                                 shiny::actionBttn('setng','settings',icon = icon('cog'),style = 'str',color = 'p'),
+                                                                 shinyWidgets::actionBttn('setng','settings',icon = icon('cog'),style = 'str',color = 'p'),
                                                                   shiny::textInput('username',placeholder='enter username',''),
 
                                                                   shiny::passwordInput('password',placeholder='enter password',''),
 
-                                                                  shiny::actionBttn("loginok",'login',style = 'fi',color = 's'))
+                                                                  shinyWidgets::actionBttn("loginok",'login',style = 'fi',color = 's'))
                                                     )))
   })
 
