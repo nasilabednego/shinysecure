@@ -15,42 +15,42 @@
 
 encryptUI<-function(){
 
-  fluidPage(
+  shiny::fluidPage(
 
-    useShinyjs(),
+    shinyjs::useShinyjs(),
 
-    uiOutput('login'),
-    theme = bs_theme(bootswatch = 'li'),
-    uiOutput('UIO'))
+    shiny::uiOutput('login'),
+    theme = bslib::bs_theme(bootswatch = 'li'),
+    shiny::uiOutput('UIO'))
 
 
 }
 
 encrypt<-function(credentials, input, output,UI,session){
   credentials
-  observeEvent(input$loginok,{
-    req(input$username==credentials%>%select(username)%>%filter(username==input$username))
-    req(input$password==credentials%>%select(password)%>%filter(password==input$password))
+  shiny::observeEvent(input$loginok,{
+    shiny::req(input$username==credentials%>%select(username)%>%filter(username==input$username))
+    shiny::req(input$password==credentials%>%select(password)%>%filter(password==input$password))
 
-    delay(2000,
+    shinyjs::delay(2000,
           output$UIO<-
-            renderUI({
-              div(style=paste0('font-size:',input$inpuT,'%'),
+            shiny::renderUI({
+              shiny::div(style=paste0('font-size:',input$inpuT,'%'),
                   UI)}))
 
 
   })
-  observeEvent(input$loginok,{
-    req(input$username==credentials%>%select(username)%>%filter(username==input$username))
-    req(input$password==credentials%>%select(password)%>%filter(password==input$password))
-    toggle('login')})
+  shiny::observeEvent(input$loginok,{
+    shiny::req(input$username==credentials%>%select(username)%>%filter(username==input$username))
+    shiny::req(input$password==credentials%>%select(password)%>%filter(password==input$password))
+    shinyjs::toggle('login')})
 
 
 
 
-  observeEvent(input$setng,{
-    showModal(modalDialog('settings',
-                          sliderInput("inpuT",
+  shiny::observeEvent(input$setng,{
+    shiny::showModal(shiny::modalDialog('settings',
+                          shiny::sliderInput("inpuT",
                                       "Adjust font:",
                                       min = 50,
                                       max = 100,
@@ -61,25 +61,25 @@ encrypt<-function(credentials, input, output,UI,session){
 
 
 
-  output$user<-renderUI({
+  output$user<-shiny::renderUI({
     input$username
   })
 
-  output$login<-renderUI({isolate({ absolutePanel(draggable = T,
-                                                  wellPanel(
-                                                    div(style=paste0('font-size:',input$inpuT,'%'),
-                                                        fluidPage(theme_onenote,
-                                                                  dashboardFooter(fixed = F,'right' =
-                                                                                    fluidPage(
+  output$login<-shiny::renderUI({isolate({ shiny::absolutePanel(draggable = T,
+                                                  shiny::wellPanel(
+                                                    shiny::div(style=paste0('font-size:',input$inpuT,'%'),
+                                                        shiny::fluidPage(dashboadthemes::theme_onenote,
+                                                                  
+                                                                                   shiny::fluidPage(
                                                                                       'From NCDS&AS'
 
 
                                                                                       #TimeOutput()
-                                                                                    )
+                                                                                    
 
                                                                   ),
-                                                                  actionBttn('setng','settings',icon = icon('cog'),style = 'str',color = 'p'),
-                                                                  textInput('username',placeholder='enter username',''),
+                                                                 shiny::actionBttn('setng','settings',icon = icon('cog'),style = 'str',color = 'p'),
+                                                                  shiny::textInput('username',placeholder='enter username',''),
 
                                                                   passwordInput('password',placeholder='enter password',''),
 
