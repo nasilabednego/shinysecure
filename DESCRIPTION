@@ -1,7 +1,7 @@
 Package: shinysecure
 Type: Package
 Title: encrypts shiny app
-Version: 0.1.0
+Version: 0.1.1
 Author: Abednego Nasila
 Maintainer: Abednego Nasila <alisanabednego@gmail.com>
 Description: This package enables authors to encrypt shiny app.
