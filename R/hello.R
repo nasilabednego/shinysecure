@@ -45,6 +45,8 @@ encrypt<-function(credentials, input, output,UI,session){
     input$username
   })
   shiny::observeEvent(input$loginok,{
+    req(input$password!='')
+    req(input$username!='')
 if(input$password!=credentials%>%select(password)%>%filter(password==input$password)){
     shinyjs::delay(1000,
           output$UIlogfailed<-
