@@ -1,7 +1,4 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
+
 #
 # You can learn more about package authoring with RStudio at:
 #
@@ -19,11 +16,15 @@ encryptUI<-function(){
 
     shinyjs::useShinyjs(),
 
-    shiny::uiOutput('login'),
+    shiny::uiOutput('logintosecure'),
     theme = bslib::bs_theme(bootswatch = 'li'),
-    shiny::uiOutput('UIO'))
+    shiny::uiOutput('UIlogsecuredpage'))
 
 
+}
+
+user<-function(){
+shiny::uiOutput('userthatloggedin')
 }
 
 encrypt<-function(credentials, input, output,UI,session){
@@ -33,7 +34,7 @@ encrypt<-function(credentials, input, output,UI,session){
     shiny::req(input$password==credentials%>%select(password)%>%filter(password==input$password))
 
     shinyjs::delay(2000,
-          output$UIO<-
+          output$UIlogsecuredpage<-
             shiny::renderUI({
               shiny::div(style=paste0('font-size:',input$inpuT,'%'),
                   UI)}))
@@ -61,11 +62,11 @@ encrypt<-function(credentials, input, output,UI,session){
 
 
 
-  output$user<-shiny::renderUI({
+  output$userthatloggedin<-shiny::renderUI({
     input$username
   })
 
-  output$login<-shiny::renderUI({isolate({ shiny::absolutePanel(draggable = T,
+  output$logintosecure<-shiny::renderUI({isolate({ shiny::absolutePanel(draggable = T,
                                                   shiny::wellPanel(
                                                     shiny::div(style=paste0('font-size:',input$inpuT,'%'),
                                                         shiny::fluidPage(dashboardthemes::theme_onenote,
