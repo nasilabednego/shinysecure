@@ -54,7 +54,7 @@ if(input$password!=credentials%>%select(password)%>%filter(password==input$passw
               )
         })
                 )}else
-  if(input$username!=credentials%>%select(username)%>%filter(username==input$username){
+  if(input$username!=credentials%>%select(username)%>%filter(username==input$username)){
  shinyjs::delay(1000,
           output$UIlogfailed<-
             shiny::renderUI({
