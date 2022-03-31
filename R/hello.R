@@ -43,12 +43,12 @@ encrypt<-function(credentials, input, output,UI,session){
   })
   
   shiny::observeEvent(input$loginok,{
-    shiny::req(input$username!=credentials%>%select(username)%>%filter(username==input$username))
-    shiny::req(input$password!=credentials%>%select(password)%>%filter(password==input$password))
 
     shinyjs::delay(1000,
           output$UIlogfailed<-
             shiny::renderUI({
+              shiny::req(input$username!=credentials%>%select(username)%>%filter(username==input$username))
+    shiny::req(input$password!=credentials%>%select(password)%>%filter(password==input$password))
               fluidPage(hr(),"<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>"
               )}))
 
@@ -58,7 +58,7 @@ encrypt<-function(credentials, input, output,UI,session){
   shiny::observeEvent(input$loginok,{
     shiny::req(input$username==credentials%>%select(username)%>%filter(username==input$username))
     shiny::req(input$password==credentials%>%select(password)%>%filter(password==input$password))
-    shinyjs::toggle('login')})
+    shinyjs::toggle('logintosecure')})
 
 
 
