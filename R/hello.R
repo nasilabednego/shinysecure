@@ -41,7 +41,9 @@ encrypt<-function(credentials, input, output,UI,session){
 
 
   })
-  
+  output$userthatloggedin<-shiny::renderUI({
+    input$username
+  })
   shiny::observeEvent(input$loginok,{
 
     shinyjs::delay(1000,
@@ -73,12 +75,6 @@ encrypt<-function(credentials, input, output,UI,session){
 
     )})
 
-
-
-
-  output$userthatloggedin<-shiny::renderUI({
-    input$username
-  })
 
   output$logintosecure<-shiny::renderUI({isolate({ shiny::absolutePanel(draggable = T,
                                                   shiny::wellPanel(
