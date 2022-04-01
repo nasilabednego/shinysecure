@@ -31,7 +31,7 @@ encrypt<-function(credentials, input, output,UI,session){
   credentials
   shiny::observeEvent(input$loginok,{
       if(input$username %in%  credentials$username == T){
-        datcred<-credentials%>%dplyr::filter(username==input$u)%>%select(password)
+        datcred<-credentials%>%dplyr::filter(username==input$username)%>%select(password)
         if(input$password %in% datcred$password == T){
           req(input$password==credentials%>%filter(username==input$username)%>%
                 dplyr::filter(password==input$password)%>%select(password))
@@ -53,7 +53,7 @@ encrypt<-function(credentials, input, output,UI,session){
     output$UIlogfailed<-
             shiny::renderUI({
       if(input$username %in%  credentials$username == T){
-        datcred<-credentials%>%filter(username==input$u)%>%select(password)
+        datcred<-credentials%>%filter(username==input$username)%>%select(password)
         if(input$password %in% datcred$password == T){
           req(input$password==credentials%>%filter(username==input$username)%>%
                 filter(password==input$password)%>%select(password))}else{
@@ -70,7 +70,7 @@ encrypt<-function(credentials, input, output,UI,session){
   
   shiny::observeEvent(input$loginok,{
  if(input$username %in%  credentials$username == T){
-        datcred<-credentials%>%filter(username==input$u)%>%select(password)
+        datcred<-credentials%>%filter(username==input$username)%>%select(password)
         if(input$password %in% datcred$password == T){
           req(input$password==credentials%>%filter(username==input$username)%>%
                 filter(password==input$password)%>%select(password))
