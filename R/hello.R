@@ -31,10 +31,10 @@ encrypt<-function(credentials, input, output,UI,session){
   credentials
   shiny::observeEvent(input$loginok,{
       if(input$username %in%  credentials$username == T){
-        datcred<-credentials%>%filter(username==input$u)%>%select(password)
+        datcred<-credentials%>%dplyr::filter(username==input$u)%>%select(password)
         if(input$password %in% datcred$password == T){
           req(input$password==credentials%>%filter(username==input$username)%>%
-                filter(password==input$ps)%>%select(password))
+                dplyr::filter(password==input$password)%>%select(password))
 
     shinyjs::delay(2000,
           output$UIlogsecuredpage<-
@@ -50,15 +50,13 @@ encrypt<-function(credentials, input, output,UI,session){
     input$username
   })
   shiny::observeEvent(input$loginok,{
-    req(input$password!='')
-    req(input$username!='')
     output$UIlogfailed<-
             shiny::renderUI({
       if(input$username %in%  credentials$username == T){
         datcred<-credentials%>%filter(username==input$u)%>%select(password)
         if(input$password %in% datcred$password == T){
           req(input$password==credentials%>%filter(username==input$username)%>%
-                filter(password==input$ps)%>%select(password))}else{
+                filter(password==input$password)%>%select(password))}else{
           
         fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>")}
 }else{fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>")}
@@ -71,9 +69,13 @@ encrypt<-function(credentials, input, output,UI,session){
   })
   
   shiny::observeEvent(input$loginok,{
-    shiny::req(input$username==credentials%>%select(username)%>%filter(username==input$username))
-    shiny::req(input$password==credentials%>%select(password)%>%filter(password==input$password))
-    shinyjs::toggle('logintosecure')})
+ if(input$username %in%  credentials$username == T){
+        datcred<-credentials%>%filter(username==input$u)%>%select(password)
+        if(input$password %in% datcred$password == T){
+          req(input$password==credentials%>%filter(username==input$username)%>%
+                filter(password==input$password)%>%select(password))
+    shinyjs::toggle('logintosecure')}}
+        })
 
 
 
@@ -84,7 +86,7 @@ encrypt<-function(credentials, input, output,UI,session){
                                       "Adjust font:",
                                       min = 50,
                                       max = 100,
-                                      value = 100)),
+                                      value = 100))
 
     )})
 
