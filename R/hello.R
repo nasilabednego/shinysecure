@@ -30,14 +30,19 @@ shiny::uiOutput('userthatloggedin')
 encrypt<-function(credentials, input, output,UI,session){
   credentials
   shiny::observeEvent(input$loginok,{
-    shiny::req(input$username==credentials%>%select(username)%>%filter(username==input$username))
-    shiny::req(input$password==credentials%>%select(password)%>%filter(password==input$password))
+      if(input$username %in%  credentials$username == T){
+        datcred<-credentials%>%filter(username==input$u)%>%select(password)
+        if(input$password %in% datcred$password == T){
+          req(input$password==credentials%>%filter(username==input$username)%>%
+                filter(password==input$ps)%>%select(password))
 
     shinyjs::delay(2000,
           output$UIlogsecuredpage<-
             shiny::renderUI({
               shiny::div(style=paste0('font-size:',input$inpuT,'%'),
                   UI)}))
+          }
+        }
 
 
   })
@@ -47,24 +52,21 @@ encrypt<-function(credentials, input, output,UI,session){
   shiny::observeEvent(input$loginok,{
     req(input$password!='')
     req(input$username!='')
-if(input$password!=credentials%>%select(password)%>%filter(password==input$password)){
-    shinyjs::delay(1000,
-          output$UIlogfailed<-
+    output$UIlogfailed<-
             shiny::renderUI({
-              
-                fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>"
-              )
+      if(input$username %in%  credentials$username == T){
+        datcred<-credentials%>%filter(username==input$u)%>%select(password)
+        if(input$password %in% datcred$password == T){
+          req(input$password==credentials%>%filter(username==input$username)%>%
+                filter(password==input$ps)%>%select(password))}else{
+          
+        fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>")}
+}else{fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>")}
+
+ 
+         
         })
-                )}else
-  if(input$username!=credentials%>%select(username)%>%filter(username==input$username)){
- shinyjs::delay(1000,
-          output$UIlogfailed<-
-            shiny::renderUI({
-              
-                fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>"
-              )
-        })
-                )}
+               
 
   })
   
