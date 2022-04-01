@@ -58,8 +58,8 @@ encrypt<-function(credentials, input, output,UI,session){
           req(input$password==credentials%>%filter(username==input$username)%>%
                 filter(password==input$password)%>%select(password))}else{
           
-        fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>")}
-}else{fluidPage("<span style=\"color:red\">Incorrect username or password. Try again with the correct credentials or click on forgot username or password.</span>")}
+        fluidPage(span( style="color:red",'Incorrect username or password. Try again with the correct credentials or click on forgot username or password.'))}
+}else{fluidPage(span( style="color:red",'Incorrect username or password. Try again with the correct credentials or click on forgot username or password.'))}
 
  
          
