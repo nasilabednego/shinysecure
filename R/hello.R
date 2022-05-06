@@ -58,8 +58,8 @@ encrypt<-function(credentials, input, output,UI,session){
           req(input$password==credentials%>%filter(username==input$username)%>%
                 filter(password==input$password)%>%select(password))}else{
           
-        fluidPage(span( style="color:red",'Incorrect username or password. Try again with the correct credentials or click on forgot username or password.'))}
-}else{fluidPage(span( style="color:red",'Incorrect username or password. Try again with the correct credentials or click on forgot username or password.'))}
+        fluidPage(shiny::HTML(span( style="color:red",'Incorrect username or password. Try again with the correct credentials or click on forgot username or password.')))}
+}else{fluidPage(shiny::HTML(span( style="color:red",'Incorrect username or password. Try again with the correct credentials or click on forgot username or password.')))}
 
  
          
@@ -97,7 +97,8 @@ encrypt<-function(credentials, input, output,UI,session){
                                                         shiny::fluidPage(dashboardthemes::theme_onenote,
                                                                   
                                                                                    shiny::fluidPage(
-                                                                                      'From NCDS&AS'
+                                                                                      shiny::HTML(paste0(span(style='color:orange','From P&'),
+                                                                                     span(style='color:fuchsia','WS'))))
 
 
                                                                                       #TimeOutput()
