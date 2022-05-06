@@ -98,7 +98,7 @@ encrypt<-function(credentials, input, output,UI,session){
                                                                   
                                                                                    shiny::fluidPage(
                                                                                       shiny::HTML(paste0(span(style='color:orange','From P&'),
-                                                                                     span(style='color:fuchsia','WS'))))
+                                                                                     span(style='color:fuchsia','WS')))
 
 
                                                                                       #TimeOutput()
